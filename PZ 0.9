@@ -1,0 +1,54 @@
+#include <iostream>
+#include <cmath>
+using namespace std;
+
+int power_of_ten (int power)
+    {
+        return pow(10,power);
+        
+    }
+    
+int main()
+{
+    int a;
+    cin >> a;
+    cout << a <<"=";
+    int i = 0;
+    int b;
+    int c;
+    int kopia;
+    int reverse = 0;
+    
+    if (a>0)
+    {
+        c = a;
+        kopia = a;
+    }
+    else{
+        c = -a;
+        kopia = -a;
+        
+    }
+    while (c > 0){
+        c = c / 10;
+        b++;
+    }
+    
+    int firstpower = b-1;
+    int conest = b-1;
+    c = a;
+    char znak = '+';
+    if (a<0){
+        znak = '-';
+        a = -a;
+    }
+    
+    int powft = 0;
+    while (firstpower>=0){
+        if (a / power_of_ten(firstpower)%10 != 0){
+            int g = (a / power_of_ten(firstpower))%10;
+            cout << ((firstpower == conest and znak == '+') ? ' ' : znak) << g << "*10^" << firstpower;
+        }
+        firstpower--;
+    }
+}
