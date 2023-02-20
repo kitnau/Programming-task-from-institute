@@ -1,0 +1,66 @@
+#include <iostream>
+using namespace std;
+#include <cmath>
+
+int c2n(char c)
+{
+    if (c >= '0' && c <= '9')
+        return c - '0';
+    if (c >= 'A' && c <= 'Z')
+        return c - 'A' + 10;
+    
+    throw runtime_error("Invalid character entered");
+}
+
+char n2c(int n)
+{
+    if (n >= 0 && n <= 9)
+        return n + '0';
+    if (n >= 10 && n <= 25)
+        return n - 10 + 'A';
+        
+    throw runtime_error("Invalid number provided");
+}
+
+int read(int &base, uint32_t &number, int &next_base)
+{
+    char c;
+    cin >> base;
+    cin >> c;
+    number = 0;
+    while (c != ';'){
+        number = (number * base + c2n(c));
+        cin >> c;
+    }
+    
+    
+    cin >> next_base;
+    return 0;
+}
+
+int out (uint32_t &number, int &next_base)
+{
+    int kopia = number;
+    while (kopia > 0)
+    {
+        cout << n2c(kopia % next_base);
+        kopia = kopia / next_base;
+    }
+    return 0;
+}
+
+int main()
+{
+    int base;
+    uint32_t number;
+    int next_base;
+    read (base, number, next_base);
+    
+    int c=0;
+    // на данный момент число number уже переведено в десятичную
+    cout << number << "\n";
+    //--------------------------------
+    out(number, next_base);
+    
+    // осталось перевернуть вывод числа
+}
