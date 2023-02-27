@@ -33,7 +33,6 @@ int read(int &base, uint32_t &number, int &next_base)
         cin >> c;
     }
     
-    
     cin >> next_base;
     return 0;
 }
@@ -42,12 +41,13 @@ int out (uint32_t &number, int &next_base)
 {
     int n = log(number) / log(next_base);
     int current = number;
+    int power = pow(next_base, n);
     while (n >= 0) {
-        int power = pow(next_base, n);
         int digit = current / power;
         char c = digit < 10 ? digit + '0' : digit + '7';
         cout << c;
         current %= power;
+        power = power / next_base;
         n--;
     }
     cout << endl;
