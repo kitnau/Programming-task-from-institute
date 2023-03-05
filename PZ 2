@@ -1,22 +1,44 @@
 #include <iostream>
+#include <stdio.h>
+#include <time.h>       // for clock_t, clock(), CLOCKS_PER_SEC
+#include <unistd.h>
 using namespace std;
 
-int F1 (int n, int &count1){
-    int f[n];
-    int i;
-    
-    f[1] = 1;
-    f[2] = 3;
-    count1 ++;
-    for (i = 3; i <= n; i++)
-    {
-        f[i] = f [i-1] + f[i-2] + (i - 2);
-        count1++;
+int F1 (int n, int &count1, int *mas,double &time_spent, clock_t &begin){
+    clock_t end = clock();
+    time_spent += (double)(end - begin) / CLOCKS_PER_SEC;
+    if (time_spent >10) {
+        cout << "Выполнение дольше 10 секунд";
+        exit (1);
+        }
+    if (mas[n] == 0){
+        if (n == 1){
+            count1 ++;
+            mas[n] = 1;
+            return 1;
+        }
+        else if (n == 2){
+            count1 ++;
+            mas[n] = 3;
+            return 3;
+        }
+        count1 ++;
+        mas[n] = (F1(n-1, count1, mas, time_spent, begin) + F1(n-2, count1, mas, time_spent, begin) + (n-2))%10000;
+        return mas[n];
     }
-    return f[n];
+    else{
+    count1 ++;
+    return (mas[n-1] + mas[n-2] + (n-2))%10000;
+    }
 }
 
-int F2 (int n, int &count2){
+int F2 (int n, int &count2,double &time_spent, clock_t &begin){
+    clock_t end = clock();
+    time_spent += (double)(end - begin) / CLOCKS_PER_SEC;
+    if (time_spent >10) {
+        cout << "Выполнение дольше 10 секунд";
+        exit (1);
+        }
     if (n == 1){
         count2 ++;
         return 1;
@@ -26,18 +48,25 @@ int F2 (int n, int &count2){
         return 3;
     }
     count2 ++;
-    return F2(n-1, count2) + F2(n-2, count2) + (n-2);
+    return (F2(n-1, count2, time_spent, begin) + F2(n-2, count2, time_spent, begin) + (n-2))%10000;
 }
-
-int main ()
+int mas[0*501];
+int main (void)
 {
+
     int c1;
     int count1 = 0;
     int count2 = 0;
     cin >> c1;
-
-    cout << F1(c1, count1) << " , повторений оптимизированным способом: " << count1 << "\n";
-    cout << F2(c1, count2) << " , повторений НЕоптимизированным способом: " << count2 << "\n";
+    
+    double time_spent = 0.0;
+    clock_t begin = clock();
+    
+    cout << F1(c1, count1, mas,time_spent, begin) << " , повторений оптимизированным способом: " << count1 << "\n";
+    
+    time_spent = 0.0;
+    begin = clock();
+    cout << F2(c1, count2, time_spent, begin) << " , повторений НЕоптимизированным способом: " << count2 << "\n";
     return 0;
     
 }
