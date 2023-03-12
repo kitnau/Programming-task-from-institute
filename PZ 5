@@ -1,0 +1,39 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+string check_bracket(char inner_symbol, int &flag1, int &flag2, int &flag3, string result){
+    result = "YES";
+    if ((flag1 == -1 or flag2 == -1 or flag3 == -1) & (inner_symbol ==  ')' or inner_symbol ==  ']' or inner_symbol ==  '}')) result = "NO";
+    
+    return result;
+}
+
+int main()
+{
+    char symbol;
+    int flag1 = -1; // отвечает за проверку скобок ()
+    int flag2 = -1; // отвечает за проверку скобок []
+    int flag3 = -1; // отвечает за проверку скобок {}
+    string flag_error = "-1";
+    cin >> symbol;
+    while (symbol != '\0'){
+        if (check_bracket (symbol, flag1, flag2, flag3, flag_error) == "NO") {
+            flag_error = "NO";
+            break;
+            
+    }
+    
+    cout << flag_error;
+    return 0;
+}
+}
+
+
+
+
+
+
+/*if (inner_symbol == "(" & inner_symbol != 1){
+        flag1 
+    } */
