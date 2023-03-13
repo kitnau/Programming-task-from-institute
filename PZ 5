@@ -4,7 +4,7 @@ using namespace std;
 
 
 
-string check_bracket(char inner_symbol, int &flag1, int &flag2, int &flag3, int &n, int *massiv, int &leng){
+string check_bracket(char inner_symbol, int &flag1, int &flag2, int &flag3, int &n, char *massiv, int &leng){
     n++;
     if (inner_symbol ==  '('){
         flag1++;
@@ -80,7 +80,7 @@ int main()
     string flag_error = "YES";
     cin >> stroka;
     int leng = stroka.size();
-    int massiv[leng];
+    char massiv[leng];
 
     
     for (int i = 0; i < leng; i++) {
