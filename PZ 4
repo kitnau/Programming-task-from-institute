@@ -1,0 +1,26 @@
+#include <iostream>
+using namespace std;
+
+int prostoe (int x, int &g, long &number, long &mass){
+    if (g == x) return 0;
+    for (long t = 1; t < number; t++){
+        if (number % (mass[t]) == 0) {
+        cout 
+        }
+    }
+}
+
+int main()
+{
+    int N;
+    cin >> N;
+    int g = 0;
+    long number = 1;
+    long mass[N ** N];
+    for (long i = 0; i < mass.size; i++){
+        mass[i] = i + 1;
+    }
+    cout << prostoe(N, g, number, mass);
+
+    return 0;
+}
