@@ -5,6 +5,10 @@ using namespace std;
 
 
 string check_bracket(char inner_symbol, int &n, long *massiv, int &leng){
+/*    cout << "\n";
+    for (int g = 0; g < leng; g++){
+        cout << massiv[g] << " ";
+    }*/
     if (inner_symbol ==  '('){
         n++;
         massiv[n] = 1;
@@ -18,8 +22,8 @@ string check_bracket(char inner_symbol, int &n, long *massiv, int &leng){
         massiv[n] = 3;
     }
     else if (inner_symbol ==  ')') {
-        for (int g = n; g > -2; g--){
-            if (g == -1) return "NO";
+        if (n == -1) return "NO";
+        for (int g = n; g > -1; g--){
             if (massiv[g] == 2 || massiv[g] == 3){
                 return "NO";
             }
@@ -33,8 +37,8 @@ string check_bracket(char inner_symbol, int &n, long *massiv, int &leng){
         }
     }
     else if (inner_symbol ==  ']') {
-        for (int g = n; g > -2; g--){
-            if (g == -1) return "NO";
+        if (n == -1) return "NO";
+        for (int g = n; g > -1; g--){
             if (massiv[g] == 1 || massiv[g] == 3){
                 return "NO";
             }
@@ -48,8 +52,8 @@ string check_bracket(char inner_symbol, int &n, long *massiv, int &leng){
         }
     }
     else if (inner_symbol ==  '}') {
-        for (int g = n; g > -2; g--){
-            if (g == -1) return "NO";
+        if (n == -1) return "NO";
+        for (int g = n; g > -1; g--){
             if (massiv[g] == 1 || massiv[g] == 2){
                 return "NO";
             }
@@ -81,13 +85,20 @@ int main()
     int leng = stroka.size();
     long massiv[leng];
 
-    
+    for (int i = 0; i < leng; i++){
+        massiv[i] = -2;
+    }
     for (int i = 0; i < leng; i++) {
         if (check_bracket (stroka[i], n, massiv, leng) == "NO") {
             flag_error = "NO";
             break;
         }
         }
+    //cout << "\n";
+    for (int i = 0; i < leng; i++){
+        /*cout << massiv [i] << " ";*/
+        if (massiv [i] == 1 or massiv [i] == 2 or massiv [i] == 3) flag_error = "NO";
+    }
     cout << flag_error;
     return 0;
 }
