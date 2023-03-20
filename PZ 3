@@ -1,0 +1,39 @@
+#define _USE_MATH_DEFINES
+#include <iostream>
+#include <math.h>
+ 
+ 
+using namespace std;
+ 
+const int H = 256;
+const int W = 256; 
+
+int sinus_graph(float *mass_sinus)
+{
+    float m[H][W];
+    
+    for (size_t x = 0; x < W; ++x)
+    {
+            mass_sinus[x] = (sin(1.0 * x * 2 * M_PI / W)) / 2 * H;
+            cout << mass_sinus[x] << " ";
+    }
+    
+    
+    return 0;
+}
+
+int pomehi(){
+    return 0;
+}
+    
+    
+int main(){
+    
+    float mass_sinus[W];
+    sinus_graph(mass_sinus);
+    
+    
+    
+    return 0;
+}
+    
